@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "jquery-mask-plugin": "^1.14.16",
+    "jspdf": "^2.4.0",
+    "chart.js": "^3.5.1"
+  },
+  "name": "vagner",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
