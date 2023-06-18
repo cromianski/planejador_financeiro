@@ -565,6 +565,10 @@
     <div id='loading'>
         <i class='fa-solid fa-spinner'></i>
     </div>
+
+    <div id='popover'>
+        <span id='popover_message'></span>
+    </div>
     
     <script src="https://kit.fontawesome.com/f286ff8020.js" crossorigin="anonymous"></script>
 
@@ -582,9 +586,5 @@
     <script src="js/slider.js"></script>
     <script src="js/pdf.js"></script>
     <script src="js/mail.js"></script>
-
-    <script>
-        fillInputs();
-    </script>
 </body>
 </html>

@@ -1,11 +1,11 @@
-function fillInputs(){
+/**function fillInputs(){
     $('.pages').each(function(index, page) {
         let pageInputs = $(page).find('.input');
         pageInputs.each(function(index, input) {
             input.value = ((Math.random() * (999.99 - 1)) + 1).toFixed(2);
         });
     });
-}
+}**/
 function getAllData(){
     let data = {};
     $('.pages').each(function(index, page) {
@@ -96,17 +96,64 @@ function getSaldoFinal() {
 function getMensagemInvestimento() {
     let saldo = getSaldoFinal();
     if (saldo > 1000) {
-        return `Com R$ ${saldo} você pode investir em xxx, yyy e zzz`;
+        return `
+        Com este restante (R$ ${saldo}) você pode investir 50% (R$${saldo * 0.5}) em renda variável (ações, fundos de investimentos...).
+        Disponíveis em corretoras de investimentos. O restante (R$${saldo * 0.5}), você pode fazer todo o investimento em renda fixa (LCI, LCA, SELIC, CDBs, RDCs...).
+        Estes investimentos estão disponíveis em bancos, cooperativas de crédito e corretoras de investimentos.
+        `;
     }
     if (saldo > 500) {
-        return `Com R$ ${saldo} você pode investir em aaa, bbb e ccc`;
+        return `
+        Com este restante (R$ ${saldo}) você pode investir 30% (R$${saldo * 0.3}) em renda variável (ações, fundos de investimentos...).
+        Disponíveis em corretoras de investimentos. O restante (R$${saldo * 0.7}), você pode fazer todo o investimento em renda fixa (LCI, LCA, SELIC, CDBs, RDCs...).
+        Estes investimentos estão disponíveis em bancos, cooperativas de crédito e corretoras de investimentos.
+        `;
     }
-    if (saldo > 100) {
-        return `Com R$ ${saldo} você pode investir em ddd, eee e fff`;
+    if (saldo > 0) {
+        return `
+        Com este restante (R$ ${saldo}), você pode fazer todo o investimento em renda fixa (LCI, LCA, SELIC, CDBs, RDCs...).
+        Estes investimentos estão disponíveis em bancos, cooperativas de crédito e corretoras de investimentos.
+        `;
     }
-    if (saldo < 0) {
-        return `Você está com saldo negativo! Não é possível realizar investimentos.`;
+    if (saldo <= 0) {
+        let saldoInvestimento = getSomaInvestimentos();
+        let newSaldo = saldo + saldoInvestimento;
+        if (newSaldo >= 0) {
+            return `Você está com saldo negativo neste mês! Uma opção é pegar o valor investido (R$${saldoInvestimento}) e quitar suas dívidas.`;
+        }
+        return `Você está com saldo negativo neste mês! Não é possível realizar investimentos. Para quitar suas dívidas, recomendamos solicitar um empréstimo bancário.`;
     }
-    return `Com R$${saldo} você pode investir em ggg, hhh e iii`;
 }
+function getCanvasNodes() {
+    let canvasList = {
+        gastosGerais: document.getElementById("chart_gastosGerais"),
+        habitacao: document.getElementById("chart_gastosEspecificos_moradia"),
+        alimentacao: document.getElementById("chart_gastosEspecificos_alimentacao"),
+        transporte: document.getElementById("chart_gastosEspecificos_transporte"),
+        educacao: document.getElementById("chart_gastosEspecificos_educacao"),
+        saude: document.getElementById("chart_gastosEspecificos_saude"),
+        gastosExtras: document.getElementById("chart_gastosEspecificos_extras"),
+        rendasGastos: document.getElementById("chart_gastos_saldos"),
+        investimentosGastos: document.getElementById("chart_investimentos")
+    };
+    return canvasList;
+}
+function generateImages() {
+    let canvas = getCanvasNodes();
+    let images = {
+        gastosGerais: '',
+        habitacao: '',
+        alimentacao: '',
+        transporte: '',
+        educacao: '',
+        saude: '',
+        gastosExtras: '',
+        rendasGastos: '',
+        investimentosGastos: ''
+    };
+    Object.entries(canvas).forEach(([chart, node]) => {;
+        images[chart] = node.toDataURL('image/jpeg');
+    });
 
+    return images;
+}

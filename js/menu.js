@@ -13,11 +13,7 @@ function validateMenu(menuItem) {
             buildCharts();
             fillMensagemInvestimento();
         } else {
-            //notComplete()
-            fillSaldoFinal();
-            destroyCharts();
-            buildCharts();
-            fillMensagemInvestimento();
+            notComplete()
         }
     }
 }

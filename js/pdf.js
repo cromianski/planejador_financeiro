@@ -1,15 +1,23 @@
-function buildPDF(dados) {
+function buildPDF(pdfContent) {
     return new Promise((resolve, reject) => {
         $.ajax({
           url: '/webservice/build-pdf.php',
           type: 'POST',
-          data: dados,
+          data: pdfContent,
           success: function(response) {
-            resolve(response); // Resolve the promise with the PDF data
+            resolve(response);
           },
           error: function(xhr, status, error) {
-            reject(error); // Reject the promise with the error message
+            reject(error);
           }
         });
     });
+}
+function buildPDFBody() {
+  return {
+    saldoStatus: (getSaldoFinal > 0) ? 'POSITIVO' : 'NEGATIVO', 
+    analiseResultado: document.querySelector('.analise_investimento_description').textContent,
+    images: generateImages(),
+    saldo: getSaldoFinal(),
+  }
 }

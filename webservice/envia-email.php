@@ -2,8 +2,8 @@
 
 require '../bootstrap.php';
 
-use PlanejadorFinanceiro\MailController;
-use PlanejadorFinanceiro\PDFController;
+use PlanejadorFinanceiro\Controllers\MailController;
+use PlanejadorFinanceiro\Controllers\PDFController;
 
 if (empty($_POST)) {
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
@@ -12,13 +12,14 @@ if (empty($_POST)) {
 
 $userEmail = $_POST['userEmail'];
 $userName = $_POST['userName'];
-$attachmentName = $_POST['attachmentName'];
-$htmlContent = $_POST['htmlContent'];;
+$pdfContent = $_POST['pdfContent'];
+$attachmentName = $pdfContent['pdfName'];
 
 $pdf = new PDFController();
-$attachment = $pdf->buildAction($htmlContent);
+$attachment = $pdf->buildAction($userName, $attachmentName, $pdfContent['body']);
 
 $controller = new MailController();
+
 $response = $controller->sendAction($userEmail, $userName, $attachment, $attachmentName);
 echo $response;
 ?>

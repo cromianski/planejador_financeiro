@@ -1,6 +1,6 @@
 <?php
 
-namespace PlanejadorFinanceiro;
+namespace PlanejadorFinanceiro\Services;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -16,7 +16,7 @@ class MailSender
         $this->mailer = new PHPMailer(true);
     }
 
-    public function send($userEmail, $userName, $attachment, $attachmentName)
+    public function send(string $userEmail, string $userName, string $attachment, string $attachmentName)
     {
         $this->buildMailer();
         $this->buildMessage($userName);

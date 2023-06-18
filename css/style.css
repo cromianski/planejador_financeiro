@@ -233,7 +233,7 @@ body {
     position: absolute;
     top: 0;
     right: -100%;
-    transition: all ease-in-out 1s;
+    transition: all ease-in-out .5s;
 }
 /*PAGE 1*/
 #page_1 {
@@ -374,6 +374,9 @@ body {
 #wantMail_trigger.checked {
     color: var(--success);
 }
+.mail_group {
+    width: 90%;
+}
 
 /* CHARTS */
 .charts_container {
@@ -408,9 +411,9 @@ body {
     color: var(--primary-strong);
 }
 .chart .chart_description, .analise_investimento_description {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 400;
-    color: #555;
+    color: #333;
 }
 .chart canvas {
     width: 100% !important;
@@ -468,6 +471,29 @@ body {
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--primary);
+}
+
+#popover {
+    width: 15rem;
+    height: 5rem;
+    background-color: rgba(255,255,255);
+    border-radius: 4px;
+    border: 1px solid #999;
+    display: none;
+    position: absolute;
+    right: 10px;
+    bottom: -5rem;
+    z-index: 99999999;
+    transition: bottom 1s ease-in-out;
+}
+
+#popover #popover_message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+    word-wrap: break-word;
 }
 
 @media all and (min-width: 950px) {

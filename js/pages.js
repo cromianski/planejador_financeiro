@@ -27,7 +27,7 @@ function changePage(menuItem){
     } catch(e) {
         let activeTab = getActiveTab();
         activeTab.children().removeClass('done');
-        alert(e.message);
+        alerta(e.message);
     }
 }
 function getPageId(menuItem){
